@@ -1,0 +1,44 @@
+service: ${self:custom.system}-boilerplate
+
+custom:
+  system: "serverless"
+  stage: ${opt:stage, self:provider.stage}
+
+provider:
+  name: aws
+  runtime: nodejs6.10
+  region: ap-northeast-1
+  stage: DEV
+  environment:
+    NODE_ENV: ${self:custom.stage}
+
+package:
+  exclude:
+    - .git/**
+    - .nyc_output/**
+    - coverage/**
+    - test/**
+    - package-lock.json
+
+plugins:
+  - serverless-offline
+
+functions:
+  hello:
+    handler: handler.hello
+    events:
+      - http:
+          path: hello
+          method: GET
+  hello-promise:
+    handler: handler.helloPromise
+    events:
+      - http:
+          path: hello-promise
+          method: GET
+  hello-generator:
+    handler: handler.helloGeneratorFunction
+    events:
+      - http:
+          path: hello-generator
+          method: GET

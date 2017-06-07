@@ -1,0 +1,14 @@
+version: 2
+jobs:
+  build:
+      working_directory: /serverless-boilerplate
+      docker:
+        - image: node:6-alpine
+      steps:
+        - checkout
+        - run:
+            name: module install
+            command: npm install
+        - run:
+            name: test
+            command: npm run test:coverage

@@ -1,0 +1,51 @@
+{
+  "name": "serverless-boilerplate",
+  "version": "0.1.0",
+  "description": "Serverless Framework Boilerplate",
+  "main": "handler.js",
+  "scripts": {
+    "clean": "rimraf .nyc_output coverage",
+    "lint": "eslint lib handler.js",
+    "report": "nyc report --reporter=html",
+    "test": "nyc mocha test",
+    "test:coverage": "run-s clean lint test report",
+    "precommit": "lint-staged",
+    "prepush": "mocha test"
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "git add"
+    ]
+  },
+  "engines": {
+    "node": "6.10"
+  },
+  "keywords": [
+    "serverless"
+  ],
+  "author": "70_10",
+  "license": "MIT",
+  "devDependencies": {
+    "co-mocha": "1.2.0",
+    "eslint": "3.19.0",
+    "eslint-config-prettier": "2.1.1",
+    "eslint-plugin-node": "^5.0.0",
+    "eslint-plugin-prettier": "2.1.1",
+    "husky": "^0.13.4",
+    "intelli-espower-loader": "1.0.1",
+    "lint-staged": "^3.6.0",
+    "mocha": "3.4.2",
+    "npm-run-all": "4.0.2",
+    "nyc": "^11.0.2",
+    "power-assert": "^1.4.3",
+    "prettier": "^1.4.2",
+    "rimraf": "^2.6.1",
+    "serverless-offline": "^3.14.1"
+  },
+  "dependencies": {
+    "co": "4.6.0",
+    "is-generator-function": "1.0.6",
+    "is-promise": "2.1.0"
+  }
+}
