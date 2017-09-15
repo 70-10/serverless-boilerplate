@@ -4,6 +4,8 @@
   "description": "Serverless Framework Boilerplate",
   "main": "handler.js",
   "scripts": {
+    "deploy": "serverless deploy -v",
+    "dev": "serverless offline start",
     "clean": "rimraf .nyc_output coverage",
     "lint": "eslint lib handler.js",
     "report": "nyc report --reporter=html",
@@ -41,6 +43,7 @@
     "power-assert": "^1.4.4",
     "prettier": "^1.5.3",
     "rimraf": "^2.6.1",
+    "serverless": "^1.22.0",
     "serverless-offline": "^3.15.1"
   },
   "dependencies": {
