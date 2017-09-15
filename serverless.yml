@@ -3,6 +3,17 @@ service: ${self:custom.system}-boilerplate
 custom:
   system: "serverless"
   stage: ${opt:stage, self:provider.stage}
+  dynamodb:
+    start:
+      port: 8000
+      inMemory: true
+      migrate: true
+      seed: true
+    seed:
+      development:
+        sources:
+          - table: users
+            sources: [./migrate/users.json]
 
 provider:
   name: aws
@@ -11,6 +22,17 @@ provider:
   stage: DEV
   environment:
     NODE_ENV: ${self:custom.stage}
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - "dynamodb:Query"
+        - "dynamodb:Scan"
+        - "dynamodb:GetItem"
+        - "dynamodb:PutItem"
+        - "dynamodb:UpdateItem"
+        - "dynamodb:DeleteItem"
+        - "dynamodb:BatchWriteItem"
+      Resource: "arn:aws:dynamodb:ap-northeast-1:*:table/*"
 
 package:
   exclude:
@@ -21,24 +43,30 @@ package:
     - package-lock.json
 
 plugins:
+  - serverless-webpack
+  - serverless-dynamodb-local
   - serverless-offline
 
 functions:
-  hello:
-    handler: handler.hello
+  GetUser:
+    handler: lib/handlers/routes/users.findById
     events:
       - http:
-          path: hello
           method: GET
-  hello-promise:
-    handler: handler.helloPromise
-    events:
-      - http:
-          path: hello-promise
-          method: GET
-  hello-generator:
-    handler: handler.helloGeneratorFunction
-    events:
-      - http:
-          path: hello-generator
-          method: GET
+          path: users/{id}
+
+resources:
+  Resources:
+    UserTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: users
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: N
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
