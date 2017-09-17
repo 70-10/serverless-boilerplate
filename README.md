@@ -11,20 +11,20 @@ Serverless Framework Boilerplate.
 ### deploy
 
 ```
-$ npm install --production
-$ AWS_PROFILE=<YOUR PROFILE> sls deploy -s <stage> -v
+$ npm install
+$ AWS_PROFILE=<YOUR PROFILE> npm run deploy
 ```
 
 ### invoke
 
 ```
-$ AWS_PROFILE=<YOUR PROFILE> sls invoke --function <function_name> -s <stage>
+$ AWS_PROFILE=<YOUR PROFILE> npx sls invoke --function <function_name> -s <stage>
 ```
 
 #### local
 
 ```
-$ sls invoke local --function <function_name>
+$ npx sls invoke local --function <function_name>
 ```
 
 #### local for APIGateway
@@ -32,7 +32,7 @@ $ sls invoke local --function <function_name>
 Required `serverless-offline`.
 
 ```
-$ sls offline start
+$ npm run dev
 ```
 
 ### test

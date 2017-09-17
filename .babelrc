@@ -1,0 +1,4 @@
+{
+  "plugins": ["transform-runtime", "babel-plugin-espower"],
+  "presets": [["env", { "targets": { "node": "6" } }]]
+}
