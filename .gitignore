@@ -70,3 +70,6 @@ typings/
 
 ### Webpack
 .webpack/
+
+### Project
+config.json
