@@ -39,7 +39,6 @@
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.6.0",
     "babel-register": "^6.26.0",
-    "co-mocha": "1.2.0",
     "config": "^1.26.2",
     "eslint": "^4.8.0",
     "eslint-config-prettier": "^2.6.0",
