@@ -3,7 +3,6 @@ env:
   es6: true
   node: true
   mocha: true
-parser: babel-eslint
 extends:
   - eslint:recommended
   - prettier
@@ -25,7 +24,6 @@ rules:
     - version: 6
       ignores:
         - asyncAwait
-        - modules
   prettier/prettier:
     - error
     - trailingComma: es5

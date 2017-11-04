@@ -1,5 +1,5 @@
-import handler from "../lib/handlers/handler";
-import assert from "power-assert";
+const handler = require("../lib/handlers/handler");
+const assert = require("power-assert");
 
 describe("handler", () => {
   it("response 200", done => {

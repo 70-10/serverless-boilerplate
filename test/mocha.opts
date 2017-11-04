@@ -1,2 +1,2 @@
---require babel-polyfill
---compilers js:babel-register
+--require co-mocha
+--require intelli-espower-loader

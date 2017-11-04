@@ -43,7 +43,6 @@ package:
     - package-lock.json
 
 plugins:
-  - serverless-webpack
   - serverless-dynamodb-local
   - serverless-offline
 
