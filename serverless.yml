@@ -43,12 +43,14 @@ package:
     - package-lock.json
 
 plugins:
+  - serverless-plugin-typescript
   - serverless-dynamodb-local
   - serverless-offline
 
 functions:
   GetUser:
-    handler: lib/handlers/routes/users.findById
+    # handler: lib/handlers/routes/users.findById
+    handler: lib/users.hello
     events:
       - http:
           method: GET
