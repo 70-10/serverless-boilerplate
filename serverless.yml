@@ -49,8 +49,7 @@ plugins:
 
 functions:
   GetUser:
-    # handler: lib/handlers/routes/users.findById
-    handler: lib/users.hello
+    handler: lib/handlers/users.findById
     events:
       - http:
           method: GET
