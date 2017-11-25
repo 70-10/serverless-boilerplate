@@ -3,13 +3,13 @@ export default class HttpResponse {
   private headers: any;
   private body: any;
 
-  constructor(statusCode: number, body: any) {
+  constructor(statusCode: number, body?: any) {
     this.statusCode = statusCode;
     this.headers = {};
     this.body = body;
   }
 
-  toObject(): any {
+  toObject(): Object {
     return {
       statusCode: this.statusCode,
       headers: this.headers,
