@@ -1,20 +1,20 @@
-import { Context, Callback } from "aws-lambda";
-import { default as HttpResponse } from "../http-response";
+import { Callback, Context } from "aws-lambda";
 import { default as DynamoDB } from "../db/dynamodb";
+import { default as HttpResponse } from "../http-response";
 
-type handle = (event: any) => Promise<HttpResponse>;
+type Handle = (event: any) => Promise<HttpResponse>;
 
-export const findById = handler(async event => {
+export const findById = handler(async (event: any) => {
   const id = Number(event.pathParameters.id);
   const { Item } = await DynamoDB.get({
+    Key: { id },
     TableName: "users",
-    Key: { id }
   }).promise();
 
   return new HttpResponse(200, Item);
 });
 
-function handler(handle: handle) {
+function handler(handle: Handle) {
   return async (event: any, context: Context, callback: Callback) => {
     try {
       const res = await handle(event);
