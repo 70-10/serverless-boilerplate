@@ -1,1 +1,1 @@
---compilers ts:espower-typescript/guess test/**/*.test.ts
+--require espower-typescript/guess test/**/*.test.ts
