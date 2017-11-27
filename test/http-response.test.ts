@@ -6,9 +6,9 @@ describe("HttpResponse", () => {
   it("statusCode", () => {
     const res = new HttpResponse(200);
     assert.deepEqual(res.toObject(), {
-      statusCode:200,
+      body: undefined,
       headers: {},
-      body: undefined
-    })
+      statusCode: 200,
+    });
   });
 });
