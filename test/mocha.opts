@@ -1,2 +1,1 @@
---require co-mocha
---require intelli-espower-loader
+--require espower-typescript/guess test/**/*.test.ts
