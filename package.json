@@ -29,6 +29,9 @@
   ],
   "author": "70_10",
   "license": "MIT",
+  "dependencies": {
+    "co": "^4.6.0"
+  },
   "devDependencies": {
     "aws-sdk": "^2.176.0",
     "co-mocha": "^1.2.1",
@@ -49,10 +52,5 @@
     "serverless": "^1.25.0",
     "serverless-dynamodb-local": "^0.2.27",
     "serverless-offline": "^3.16.0"
-  },
-  "dependencies": {
-    "axios": "^0.17.1",
-    "cheerio": "^1.0.0-rc.2",
-    "co": "^4.6.0"
   }
 }
