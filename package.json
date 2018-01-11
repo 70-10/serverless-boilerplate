@@ -9,7 +9,7 @@
     "offline": "NODE_ENV=LOCALDEV sls offline start",
     "dynamo": "sls dynamodb install",
     "clean": "rimraf .nyc_output coverage",
-    "lint": "eslint .",
+    "lint": "prettier-eslint --write \"./@(lib|test|config)/**/*.js\"",
     "report": "nyc report --reporter=html",
     "test": "nyc mocha test",
     "test:coverage": "run-s clean lint test report",
@@ -17,7 +17,7 @@
   },
   "lint-staged": {
     "*.js": [
-      "eslint --fix",
+      "prettier-eslint --write",
       "git add"
     ]
   },
@@ -34,9 +34,7 @@
     "co-mocha": "^1.2.1",
     "config": "^1.29.0",
     "eslint": "^4.14.0",
-    "eslint-config-prettier": "^2.9.0",
     "eslint-plugin-node": "^5.2.1",
-    "eslint-plugin-prettier": "^2.4.0",
     "husky": "^0.14.3",
     "intelli-espower-loader": "1.0.1",
     "lint-staged": "^6.0.0",
@@ -45,6 +43,8 @@
     "nyc": "^11.4.1",
     "power-assert": "^1.4.4",
     "prettier": "^1.9.2",
+    "prettier-eslint": "^8.7.3",
+    "prettier-eslint-cli": "^4.7.0",
     "rimraf": "^2.6.2",
     "serverless": "^1.25.0",
     "serverless-dynamodb-local": "^0.2.27",

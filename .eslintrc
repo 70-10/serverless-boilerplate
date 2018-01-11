@@ -5,10 +5,8 @@ env:
   mocha: true
 extends:
   - eslint:recommended
-  - prettier
 plugins:
   - node
-  - prettier
 parserOptions:
   sourceType: module
   ecmaVersion: 2017
@@ -24,8 +22,3 @@ rules:
     - version: 6
       ignores:
         - asyncAwait
-  prettier/prettier:
-    - error
-    - trailingComma: es5
-      singleQuote: false
-      semi: true
