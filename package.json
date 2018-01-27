@@ -30,7 +30,10 @@
   "author": "70_10",
   "license": "MIT",
   "dependencies": {
-    "co": "^4.6.0"
+    "body-parser": "^1.18.2",
+    "co": "^4.6.0",
+    "express": "^4.16.2",
+    "serverless-http": "^1.5.3"
   },
   "devDependencies": {
     "aws-sdk": "^2.176.0",

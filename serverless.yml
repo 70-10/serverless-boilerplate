@@ -50,12 +50,11 @@ plugins:
   - serverless-offline
 
 functions:
-  GetUser:
-    handler: lib/handlers/routes/users.findById
+  app:
+    handler: lib/app.handler
     events:
-      - http:
-          method: GET
-          path: users/{id}
+      - http: "ANY /"
+      - http: "ANY {proxy+}"
 
 resources:
   Resources:
