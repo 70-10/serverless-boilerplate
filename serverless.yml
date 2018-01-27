@@ -12,8 +12,10 @@ custom:
     seed:
       development:
         sources:
-          - table: users
+          - table: ${self:custom.table.user}
             sources: [./migrate/users.json]
+  table:
+    user: user-table-${self:custom.stage}
 
 provider:
   name: aws
@@ -32,7 +34,8 @@ provider:
         - "dynamodb:UpdateItem"
         - "dynamodb:DeleteItem"
         - "dynamodb:BatchWriteItem"
-      Resource: "arn:aws:dynamodb:ap-northeast-1:*:table/*"
+      Resource:
+        - { "Fn::GetAtt": ["UserTable", "Arn" ] }
 
 package:
   exclude:
@@ -59,7 +62,7 @@ resources:
     UserTable:
       Type: AWS::DynamoDB::Table
       Properties:
-        TableName: users
+        TableName: ${self:custom.table.user}
         AttributeDefinitions:
           - AttributeName: id
             AttributeType: N
