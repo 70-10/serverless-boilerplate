@@ -31,14 +31,12 @@
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.18.2",
-    "co": "^4.6.0",
+    "config": "^1.30.0",
     "express": "^4.16.3",
     "serverless-http": "^1.5.5"
   },
   "devDependencies": {
     "aws-sdk": "^2.236.1",
-    "co-mocha": "^1.2.2",
-    "config": "^1.30.0",
     "eslint": "^4.19.1",
     "eslint-plugin-node": "^6.0.1",
     "husky": "^0.14.3",
