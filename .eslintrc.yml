@@ -5,6 +5,7 @@ env:
   mocha: true
 extends:
   - eslint:recommended
+  - plugin:node/recommended
 plugins:
   - node
 parserOptions:
@@ -15,6 +16,3 @@ rules:
   no-console: 0
   require-yield: off
   node/exports-style: [error, module.exports]
-  node/no-deprecated-api: error
-  node/no-missing-require: error
-  node/no-unsupported-features: error
