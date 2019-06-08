@@ -13,7 +13,7 @@ custom:
       development:
         sources:
           - table: ${self:custom.table.user}
-            sources: [./migrate/users.json]
+            sources: [./tools/migrate/users.json]
     stages:
       - LOCALDEV
   table:
