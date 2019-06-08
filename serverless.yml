@@ -53,7 +53,7 @@ plugins:
 
 functions:
   app:
-    handler: lib/app.handler
+    handler: src/app.handler
     events:
       - http: "ANY /"
       - http: "ANY {proxy+}"
