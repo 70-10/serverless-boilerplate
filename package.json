@@ -2,18 +2,23 @@
   "name": "serverless-boilerplate",
   "version": "0.1.0",
   "description": "Serverless Framework Boilerplate",
+  "keywords": [
+    "serverless"
+  ],
+  "license": "MIT",
+  "author": "70_10",
   "main": "handler.js",
   "scripts": {
+    "clean": "rimraf .nyc_output coverage",
     "deploy": "serverless deploy -v",
     "dev": "run-s dynamo offline",
-    "offline": "sls offline start --stage LOCALDEV",
     "dynamo": "sls dynamodb install",
-    "clean": "rimraf .nyc_output coverage",
     "lint": "prettier-eslint --write \"./@(lib|test|config)/**/*.js\"",
+    "offline": "sls offline start --stage LOCALDEV",
+    "precommit": "lint-staged",
     "report": "nyc report --reporter=html",
     "test": "nyc mocha test",
-    "test:coverage": "run-s clean lint test report",
-    "precommit": "lint-staged"
+    "test:coverage": "run-s clean lint test report"
   },
   "lint-staged": {
     "*.js": [
@@ -21,14 +26,6 @@
       "git add"
     ]
   },
-  "engines": {
-    "node": "^8.10"
-  },
-  "keywords": [
-    "serverless"
-  ],
-  "author": "70_10",
-  "license": "MIT",
   "dependencies": {
     "body-parser": "^1.19.0",
     "config": "^3.1.0",
@@ -53,5 +50,8 @@
     "serverless": "^1.44.1",
     "serverless-dynamodb-local": "^0.2.38",
     "serverless-offline": "^5.0.1"
+  },
+  "engines": {
+    "node": "^8.10"
   }
 }
