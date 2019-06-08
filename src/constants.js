@@ -1,7 +1,7 @@
-const { NODE_ENV } = process.env;
+const { SERVICE_NAME, NODE_ENV } = process.env;
 
 module.exports = {
   TableName: {
-    User: `user-table-${NODE_ENV}`,
+    User: `${SERVICE_NAME}-${NODE_ENV}-User`,
   },
 };
