@@ -36,6 +36,6 @@
     "serverless-offline": "^5.0.1"
   },
   "engines": {
-    "node": "^8.10"
+    "node": "^10"
   }
 }

@@ -21,7 +21,7 @@ custom:
 
 provider:
   name: aws
-  runtime: nodejs8.10
+  runtime: nodejs10.x
   region: ap-northeast-1
   stage: DEV
   environment:
