@@ -1,19 +1,15 @@
 const exporess = require("express");
-const router = exporess.Router();
-const Users = require("../repositories/users");
+const UserRepositoryFactory = require("../repositories/userRepository");
+const UserServiceFactory = require("../services/userService");
+const UserControllerFactory = require("../controllers/userController");
 
-router.get("/", async (req, res) => {
-  const users = await Users.All();
-  return res.send({ users });
-});
+module.exports = (db, tableName) => {
+  const router = exporess.Router();
+  const userRepository = UserRepositoryFactory(db, tableName);
+  const userService = UserServiceFactory(userRepository);
+  const userController = UserControllerFactory(userService);
+  router.get("/", userController.findAll);
 
-router.get("/:id", async (req, res) => {
-  const id = Number(req.params.id);
-  const user = await Users.findById(id);
-  if (!user) {
-    return res.status(404).send({ message: "Not found user." });
-  }
-  return res.send(user);
-});
-
-module.exports = router;
+  router.get("/:id", userController.findById);
+  return router;
+};
