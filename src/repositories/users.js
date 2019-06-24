@@ -4,6 +4,10 @@ const { TableName } = require("../constants");
 module.exports = {
   findById,
   All,
+  async createAsync(item) {
+    await DynamoDB.put({ TableName: TableName.User, Item: item }).promise();
+    return item;
+  },
 };
 
 async function findById(id) {

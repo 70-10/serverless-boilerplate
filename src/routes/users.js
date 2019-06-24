@@ -7,6 +7,11 @@ router.get("/", async (req, res) => {
   return res.send({ users });
 });
 
+router.post("/", async (req, res) => {
+  const user = await Users.createAsync({ id: Number(req.body.id), name: req.body.name });
+  return res.json(user);
+});
+
 router.get("/:id", async (req, res) => {
   const id = Number(req.params.id);
   const user = await Users.findById(id);
