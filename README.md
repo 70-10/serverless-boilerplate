@@ -4,7 +4,7 @@ Serverless Framework Boilerplate.
 
 ## Required
 
-- Node v6.10
+- Node v10.x
 
 ## Usage
 
