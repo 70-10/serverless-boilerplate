@@ -18,6 +18,14 @@ custom:
       - LOCALDEV
   table:
     user: ${self:custom.service}-${self:custom.stage}-User
+  serverless-offline-dynamodb-streams:
+    apiVersion: "2013-12-02"
+    endpoint: http://localhost:8000
+    region: ap-northeast-1
+    accessKeyId: root
+    secretAccessKey: root
+    skipCacheInvalidation: false
+    readInterval: 500
 
 provider:
   name: aws
@@ -36,9 +44,17 @@ provider:
         - "dynamodb:PutItem"
         - "dynamodb:UpdateItem"
         - "dynamodb:DeleteItem"
-        - "dynamodb:BatchWriteItem"
       Resource:
         - { "Fn::GetAtt": ["UserTable", "Arn"] }
+    - Effect: "Allow"
+      Action:
+        - "dynamodb:BatchWriteItem"
+        - "dynamodb:GetRecords"
+        - "dynamodb:GetShardIterator"
+        - "dynamodb:DescribeStream"
+        - "dynamodb:ListStreams"
+      Resource:
+        - { "Fn::GetAtt": ["UserTable", "StreamArn"] }
 
 package:
   exclude:
@@ -50,6 +66,7 @@ package:
 
 plugins:
   - serverless-dynamodb-local
+  - serverless-offline-dynamodb-streams
   - serverless-offline
 
 functions:
@@ -58,6 +75,15 @@ functions:
     events:
       - http: "ANY /"
       - http: "ANY {proxy+}"
+  stream:
+    handler: src/stream.handler
+    events:
+      - stream:
+          type: dynamodb
+          enabled: true
+          batchSize: 100
+          startingPosition: TRIM_HORIZON
+          arn: { "Fn::GetAtt": ["UserTable", "Arn"] }
 
 resources:
   Resources:
@@ -65,6 +91,8 @@ resources:
       Type: AWS::DynamoDB::Table
       Properties:
         TableName: ${self:custom.table.user}
+        StreamSpecification:
+          StreamViewType: NEW_AND_OLD_IMAGES
         AttributeDefinitions:
           - AttributeName: id
             AttributeType: N
